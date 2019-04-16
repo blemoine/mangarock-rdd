@@ -1,0 +1,10 @@
+[package]
+name = "manga-crawler"
+version = "0.1.0"
+authors = ["Benoit Lemoine <blemoine@mnubo.com>"]
+edition = "2018"
+
+[dependencies]
+actix-web = "0.7"
+chrono = "0.4"
+pretty_assertions = "0.6.1"
