@@ -39,8 +39,10 @@ fn index(_req: &HttpRequest) -> Result<String, MangaError> {
 }
 
 fn main() {
+    let port = std::env::var("PORT").unwrap_or_else(|_| "8080".to_owned());
+
     server::new(|| App::new().resource("/feed.rss", |r| r.f(index)))
-        .bind("127.0.0.1:8080")
+        .bind(format!("127.0.0.1:{}", port))
         .unwrap()
         .run()
 }
