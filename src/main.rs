@@ -39,10 +39,13 @@ fn index(_req: &HttpRequest) -> Result<String, MangaError> {
 }
 
 fn main() {
-    let port = std::env::var("PORT").unwrap_or_else(|_| "8080".to_owned());
+    let http_bind = std::env::var("HTTP_BIND").unwrap_or("0.0.0.0".to_string());
+    let http_port = std::env::var("HTTP_PORT").or(std::env::var("PORT")).unwrap_or("8088".to_string());
+    let bind_url = format!("{}:{}", http_bind, http_port);
+    println!("Binding to {}", bind_url);
 
     server::new(|| App::new().resource("/feed.rss", |r| r.f(index)))
-        .bind(format!("127.0.0.1:{}", port))
+        .bind(bind_url)
         .unwrap()
         .run()
 }
