@@ -2,7 +2,6 @@ mod mangarockclient;
 mod mangarockparser;
 mod rss;
 
-use mangarockparser::MangaInfo;
 use mangarockclient::info_on;
 use mangarockparser::MangaOid;
 use actix_web::{HttpRequest, server, App, HttpResponse};
