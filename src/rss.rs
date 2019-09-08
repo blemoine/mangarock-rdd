@@ -29,7 +29,7 @@ pub fn rss_for(infos: &Vec<MangaInfo>, now: DateTime<Utc>) -> String {
     .to_owned()
 }
 
-fn last_n_elements<T>(v: &Vec<T>, n: usize) -> Vec<T>
+fn last_n_elements<T>(v: &[T], n: usize) -> Vec<T>
 where
     T: Clone,
 {
