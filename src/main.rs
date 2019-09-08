@@ -39,7 +39,7 @@ fn index(_req: &HttpRequest) -> Result<String, MangaError> {
 }
 
 fn main() {
-    let http_bind = std::env::var("HTTP_BIND").unwrap_or("127.0.0.1".to_string());
+    let http_bind = std::env::var("HTTP_BIND").unwrap_or("0.0.0.0".to_string());
     let http_port = std::env::var("PORT").unwrap_or("8088".to_string());
     let bind_url = format!("{}:{}", http_bind, http_port);
     println!("Binding to {}", bind_url);
