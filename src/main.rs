@@ -5,7 +5,7 @@ mod rss;
 use mangarockparser::MangaInfo;
 use mangarockclient::info_on;
 use mangarockparser::MangaOid;
-use actix_web::{HttpRequest, server, App};
+use actix_web::{HttpRequest, server, App, HttpResponse};
 use chrono::Utc;
 use rss::rss_for;
 use mangarockclient::MangaError;
@@ -44,7 +44,9 @@ fn main() {
     let bind_url = format!("{}:{}", http_bind, http_port);
     println!("Binding to {}", bind_url);
 
-    server::new(|| App::new().resource("/feed.rss", |r| r.f(index)))
+    server::new(|| App::new()
+        .resource("/", |r| r.get().f(|_| HttpResponse::Ok()))
+        .resource("/feed.rss", |r| r.f(index)))
         .bind(bind_url)
         .unwrap()
         .run()
